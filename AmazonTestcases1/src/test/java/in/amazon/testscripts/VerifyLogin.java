@@ -47,14 +47,14 @@ public class VerifyLogin extends BaseClass{
 		String currentUrl = driver.getCurrentUrl();
 
 		if (shouldPass) {
-			Assert.assertTrue(currentUrl.contains("encoding"), "Login failed with valid credentials!");
+			Assert.assertTrue(currentUrl.contains("encoding"), "Login success with valid credentials!");
 			home.getHamburgerMenuBtn().click();
 			WebElement signOutButton = wait.until(ExpectedConditions.elementToBeClickable(home.getSignOutLink()));
 			JavascriptExecutor j=(JavascriptExecutor)driver;
 			j.executeScript("arguments[0].scrollIntoView(true);", signOutButton);
 			signOutButton.click();
 		} else {
-			Assert.assertFalse(currentUrl.contains("encoding"), "Login should fail but succeeded!");
+			Assert.assertFalse(currentUrl.contains("encoding"), "Login failed with invalid credentials!");
 		}
 	}
 
